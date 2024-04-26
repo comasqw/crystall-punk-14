@@ -13,10 +13,10 @@ namespace Content.Shared.Localizations
         [Dependency] private readonly IConfigurationManager _cfg = default!;
 
         // If you want to change your codebase's language, do it here.
-        private const string Culture = "en-US"; // CrystallPunk-Localization
-        private const string FallbackCulture = "en-defaults"; // CrystallPunk-Localization
+        private string Culture = "en-US"; // CrystallPunk-Localization
+        private string FallbackCulture = "en-defaults"; // CrystallPunk-Localization
 
-        /// <summary>
+        /// <summary
         /// Custom format strings used for parsing and displaying minutes:seconds timespans.
         /// </summary>
         public static readonly string[] TimeSpanMinutesFormats = new[]
@@ -29,17 +29,28 @@ namespace Content.Shared.Localizations
 
         public void Initialize()
         {
+            switch (_cfg.GetCVar(CCVars.CP14Language))
+            {
+                case "Russian":
+                    Culture = "ru-RU";
+                    FallbackCulture = "en-US";
+                    break;
+                case "English":
+                    Culture = "en-US";
+                    FallbackCulture = "en-default";
+                    break;
+                default:
+                    Culture = "en-US";
+                    FallbackCulture = "en-default";
+                    break;
+            }
+
             var culture = new CultureInfo(Culture);
             var fallbackCulture = new CultureInfo(FallbackCulture);
 
-            //switch (_cfg.GetCVar(CCVars.CP14Language))
-            //{
-            //    case CP14Languages
-            //}
-
             _loc.LoadCulture(culture);
-            _loc.LoadCulture(fallbackCulture); // CrystallPunk-Localization
-            _loc.SetFallbackCluture(fallbackCulture); // CrystallPunk-Localization
+            _loc.LoadCulture(fallbackCulture);
+            _loc.SetFallbackCluture(fallbackCulture);
             _loc.AddFunction(culture, "PRESSURE", FormatPressure);
             _loc.AddFunction(culture, "POWERWATTS", FormatPowerWatts);
             _loc.AddFunction(culture, "POWERJOULES", FormatPowerJoules);

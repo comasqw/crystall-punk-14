@@ -1515,7 +1515,7 @@ namespace Content.Shared.CCVar
 
         //CrystallPunk Language
         public static readonly CVarDef<string> CP14Language =
-            CVarDef.Create("cp14.ui.language", "ru-RU", CVar.CLIENTONLY | CVar.ARCHIVE);
+            CVarDef.Create("ui.cp14_language", "en-US", CVar.CLIENTONLY | CVar.ARCHIVE);
 
         /*
         * Accessibility

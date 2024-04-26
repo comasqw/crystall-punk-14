@@ -73,6 +73,7 @@
                     <Label Text="{Loc 'ui-options-language-select'}" />
                     <Control MinSize="4 0" />
                     <OptionButton Name="CP14LanguageOption" />
+                    <Label Text="{Loc 'ui-options-need-restart'}" FontColorOverride="Red"/>
                 </BoxContainer>
                 <!-- CrystallPunk options zone -->
 
