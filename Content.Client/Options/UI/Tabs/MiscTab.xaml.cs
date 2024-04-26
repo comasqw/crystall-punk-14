@@ -59,6 +59,28 @@ namespace Content.Client.Options.UI.Tabs
                 UpdateApplyButton();
             };
 
+            //CrystallPunk language
+            var selectedLanguage = _cfg.GetCVar(CCVars.CP14Language);
+            var langId = 0;
+            foreach (var item in Enum.GetValues(typeof(CP14Languages)))
+            {
+                var lang = item.ToString()!;
+                CP14LanguageOption.AddItem(lang, langId);
+                if (lang == selectedLanguage)
+                {
+                    CP14LanguageOption.SelectId(langId);
+                }
+                CP14LanguageOption.SetItemMetadata(langId, lang);
+                langId++;
+            }
+
+            CP14LanguageOption.OnItemSelected += args =>
+            {
+                CP14LanguageOption.SelectId(args.Id);
+                UpdateApplyButton();
+            };
+            //CrystallPunk lanuage end
+
             // Channel can be null in replays so.
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             ShowOocPatronColor.Visible = _playerManager.LocalSession?.Channel?.UserData.PatronTier is { };
@@ -157,6 +179,13 @@ namespace Content.Client.Options.UI.Tabs
                 _cfg.SetCVar(CCVars.UILayout, opt);
             }
 
+            //CrystallPunk language
+            if (CP14LanguageOption.SelectedMetadata is string cpopt)
+            {
+                _cfg.SetCVar(CCVars.CP14Language, cpopt);
+            }
+            //CrystallPunk language end
+
             _cfg.SaveToFile();
             UpdateApplyButton();
         }
@@ -180,6 +209,7 @@ namespace Content.Client.Options.UI.Tabs
             var isScreenShakeIntensitySame = Math.Abs(ScreenShakeIntensitySlider.Value / 100f - _cfg.GetCVar(CCVars.ScreenShakeIntensity)) < 0.01f;
             // var isToggleWalkSame = ToggleWalk.Pressed == _cfg.GetCVar(CCVars.ToggleWalk);
             var isStaticStorageUISame = StaticStorageUI.Pressed == _cfg.GetCVar(CCVars.StaticStorageUI);
+            var CP14isLanguageSame = CP14LanguageOption.SelectedMetadata is string cpopt && cpopt == _cfg.GetCVar(CCVars.CP14Language); // CrystallPunk
 
             ApplyButton.Disabled = isHudThemeSame &&
                                    isLayoutSame &&
@@ -197,6 +227,7 @@ namespace Content.Client.Options.UI.Tabs
                                    isChatWindowOpacitySame &&
                                    isScreenShakeIntensitySame &&
                                    // isToggleWalkSame &&
+                                   CP14isLanguageSame && //CrystallPunk
                                    isStaticStorageUISame;
         }
 

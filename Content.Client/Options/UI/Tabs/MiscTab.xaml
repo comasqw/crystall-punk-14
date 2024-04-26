@@ -64,6 +64,18 @@
                 <CheckBox Name="OpaqueStorageWindowCheckBox" Text="{Loc 'ui-options-opaque-storage-window'}" />
                 <CheckBox Name="StaticStorageUI" Text="{Loc 'ui-options-static-storage-ui'}" />
                 <!-- <CheckBox Name="ToggleWalk" Text="{Loc 'ui-options-hotkey-toggle-walk'}" /> -->
+
+                <!-- CrystallPunk options zone -->
+                <Label Text="{Loc 'ui-options-general-crystall-punk'}"
+                       FontColorOverride="{xNamespace:Static s:StyleNano.NanoGold}"
+                       StyleClasses="LabelKeyText"/>
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="{Loc 'ui-options-language-select'}" />
+                    <Control MinSize="4 0" />
+                    <OptionButton Name="CP14LanguageOption" />
+                </BoxContainer>
+                <!-- CrystallPunk options zone -->
+
             </BoxContainer>
         </ScrollContainer>
         <controls:StripeBack HasBottomEdge="False" HasMargins="False">
