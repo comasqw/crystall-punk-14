@@ -1,6 +1,8 @@
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared.CCVar;
+using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Localizations
@@ -8,10 +10,11 @@ namespace Content.Shared.Localizations
     public sealed class ContentLocalizationManager
     {
         [Dependency] private readonly ILocalizationManager _loc = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
 
         // If you want to change your codebase's language, do it here.
-        private const string Culture = "ru-RU"; // CrystallPunk-Localization
-        private const string FallbackCulture = "en-US"; // CrystallPunk-Localization
+        private const string Culture = "en-US"; // CrystallPunk-Localization
+        private const string FallbackCulture = "en-defaults"; // CrystallPunk-Localization
 
         /// <summary>
         /// Custom format strings used for parsing and displaying minutes:seconds timespans.
@@ -28,6 +31,11 @@ namespace Content.Shared.Localizations
         {
             var culture = new CultureInfo(Culture);
             var fallbackCulture = new CultureInfo(FallbackCulture);
+
+            //switch (_cfg.GetCVar(CCVars.CP14Language))
+            //{
+            //    case CP14Languages
+            //}
 
             _loc.LoadCulture(culture);
             _loc.LoadCulture(fallbackCulture); // CrystallPunk-Localization
