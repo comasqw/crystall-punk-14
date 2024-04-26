@@ -1513,10 +1513,6 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<string> SeparatedScreenChatSize =
             CVarDef.Create("ui.separated_chat_size", "0.6,0", CVar.CLIENTONLY | CVar.ARCHIVE);
 
-        //CrystallPunk Language
-        public static readonly CVarDef<string> CP14Language =
-            CVarDef.Create("ui.cp14_language", "en-US", CVar.REPLICATED);
-
         /*
         * Accessibility
         */
