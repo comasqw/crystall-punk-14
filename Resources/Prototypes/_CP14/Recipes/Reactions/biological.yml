@@ -69,14 +69,28 @@
   minTemp: 300
   priority: 2
   reactants:
-    CP14Blood:
-      amount: 0.5
+    #CP14Blood:
+    #  amount: 0.5
     CP14BloodGrassSap:
       amount: 0.5
   products:
     CP14BasicEffectEmpty: 0.25
     CP14BasicEffectSatiateHunger: 0.5
     CP14BasicEffectHealBrute: 0.25
+  randomProducts:
+  - products:
+      CP14BasicEffectEmpty: 0.25
+      CP14BasicEffectSatiateHunger: 0.5
+      CP14BasicEffectHealBrute: 0.25
+  - products:
+      CP14BasicEffectEmpty: 0.25
+      CP14BasicEffectSatiateHunger: 0.5
+      CP14BasicEffectSatiateThirst: 0.25
+  - products:
+      CP14BasicEffectEmpty: 0.25
+      CP14BasicEffectSatiateHunger: 0.25
+      CP14BasicEffectSatiateThirst: 0.25
+      CP14BasicEffectHealBrute: 0.25
   effects:
   - !type:CP14AffectSolutionTemperature
     addTemperature: -300

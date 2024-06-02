@@ -8,6 +8,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Collections.Frozen;
 using System.Linq;
+using Robust.Shared.Random;
 
 
 namespace Content.Shared.Chemistry.Reaction
@@ -17,18 +18,24 @@ namespace Content.Shared.Chemistry.Reaction
         /// <summary>
         ///     The maximum number of reactions that may occur when a solution is changed.
         /// </summary>
-        private const int MaxReactionIterations = 50; //20 standard, CP14 increase limit
+        private const int MaxReactionIterations = 20;
 
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private readonly IRobustRandom _random = default!; //CP14
 
         /// <summary>
         /// A cache of all reactions indexed by at most ONE of their required reactants.
         /// I.e., even if a reaction has more than one reagent, it will only ever appear once in this dictionary.
         /// </summary>
         private FrozenDictionary<string, List<ReactionPrototype>> _reactionsSingle = default!;
+
+        /// <summary>
+        /// a fucking shitty code! Saves the random produce index, sheet size is equal to the dictionary size above.
+        /// </summary>
+        private FrozenDictionary<string, int> _CP14reactionRandomProduce = default!;
 
         /// <summary>
         ///     A cache of all reactions indexed by one of their required reactants.
@@ -56,6 +63,11 @@ namespace Content.Shared.Chemistry.Reaction
                 var reagent = reaction.Reactants.Keys.First();
                 var list = dict.GetOrNew(reagent);
                 list.Add(reaction);
+
+                var variant = -1;
+                if (reaction.CP14RandomProducts.Count > 0)
+                    variant = _random.Next(reaction.CP14RandomProducts.Count);
+
             }
             _reactionsSingle = dict.ToFrozenDictionary();
 
@@ -177,11 +189,25 @@ namespace Content.Shared.Chemistry.Reaction
 
             //Create products
             var products = new List<string>();
-            foreach (var product in reaction.Products)
+            //CP 14 randomize reaction
+            if (reaction.CP14RandomProducts.Count > 0)
             {
-                products.Add(product.Key);
-                solution.AddReagent(product.Key, product.Value * unitReactions);
+                var selectedProduct = _random.Pick(reaction.CP14RandomProducts);
+                foreach (var product in selectedProduct.Products)
+                {
+                    products.Add(product.Key);
+                    solution.AddReagent(product.Key, product.Value * unitReactions);
+                }
             }
+            else
+            {
+                foreach (var product in reaction.Products)
+                {
+                    products.Add(product.Key);
+                    solution.AddReagent(product.Key, product.Value * unitReactions);
+                }
+            }
+            //CP14 randomize reaction end
 
             if (reaction.ConserveEnergy)
             {

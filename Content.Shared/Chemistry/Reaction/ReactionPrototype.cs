@@ -57,6 +57,12 @@ namespace Content.Shared.Chemistry.Reaction
         public Dictionary<string, FixedPoint2> Products = new();
 
         /// <summary>
+        /// CP14 - we try to randomize the reaction results by taking one here if described.
+        /// </summary>
+        [DataField("randomProducts")]
+        public List<CP14ReactionProduceEntry> CP14RandomProducts = new();
+
+        /// <summary>
         /// Effects to be triggered when the reaction occurs.
         /// </summary>
         [DataField("effects", serverOnly: true)] public List<ReagentEffect> Effects = new();
@@ -134,5 +140,14 @@ namespace Content.Shared.Chemistry.Reaction
         /// Whether or not the reactant is a catalyst. Catalysts aren't removed when a reaction occurs.
         /// </summary>
         public bool Catalyst => _catalyst;
+    }
+
+    [DataRecord]
+    public record struct CP14ReactionProduceEntry()
+    {
+        /// <summary>
+        /// Reagents created when the reaction occurs.
+        /// </summary>
+        public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> Products = new();
     }
 }
