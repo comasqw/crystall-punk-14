@@ -6,7 +6,7 @@
 Знание различных типов химикатов и их эффектов важно для того, чтобы уметь справляться с травмами и опасностями.
 
 ## Базовые алхимические реагенты
-<GuideReagentGroupEmbed Group="CP14BasicAlchemy"/>
+<GuideReagentGroupEmbed Group="CP14BasicEffect"/>
 
 ## Биологические вещества
 <GuideReagentGroupEmbed Group="CP14Biological"/>
