@@ -1,0 +1,47 @@
+- type: entity
+  id: CP14ClothingAlchemyTank
+  parent: Clothing
+  name: shoulder alchemy tank
+  components:
+  - type: Sprite
+    sprite: _CP14/Clothing/Back/alchemy_tank.rsi
+    layers:
+      - state: icon
+      - state: liq-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    equipDelay: 2
+    unequipDelay: 1
+    slots:
+    - back
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: CP14SolutionTemperature
+  - type: SolutionContainerManager
+    solutions:
+      vat:
+        maxVol: 150
+  - type: ExaminableSolution
+    solution: vat
+  - type: MixableSolution
+    solution: vat
+  - type: RefillableSolution
+    solution: vat
+  - type: DrawableSolution
+    solution: vat
+  - type: DumpableSolution
+    solution: vat
+  - type: SolutionItemStatus
+    solution: vat
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: liq-
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill
