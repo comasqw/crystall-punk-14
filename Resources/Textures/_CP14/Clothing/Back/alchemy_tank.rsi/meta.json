@@ -11,28 +11,7 @@
       "name": "icon"
     },
     {
-      "name": "liq-1"
-    },
-    {
-      "name": "liq-2"
-    },
-    {
-      "name": "liq-3"
-    },
-    {
       "name": "equipped-BACKPACK",
-      "directions": 4
-    },
-    {
-      "name": "equipped-BACKPACK-fill1",
-      "directions": 4
-    },
-    {
-      "name": "equipped-BACKPACK-fill2",
-      "directions": 4
-    },
-    {
-      "name": "equipped-BACKPACK-fill3",
       "directions": 4
     },
     {
@@ -40,31 +19,7 @@
       "directions": 4
     },
     {
-      "name": "inhand-left-fill1",
-      "directions": 4
-    },
-    {
-      "name": "inhand-left-fill2",
-      "directions": 4
-    },
-    {
-      "name": "inhand-left-fill3",
-      "directions": 4
-    },
-    {
       "name": "inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "inhand-right-fill1",
-      "directions": 4
-    },
-    {
-      "name": "inhand-right-fill2",
-      "directions": 4
-    },
-    {
-      "name": "inhand-right-fill3",
       "directions": 4
     }
   ]
