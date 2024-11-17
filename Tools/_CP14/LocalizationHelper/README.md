@@ -31,18 +31,6 @@ or just run
 run.bat
 ```
 
-## Tests
-in console
-
-```bash
-python run_tests.py
-```
-or just run
-
-```bash
-tests.bat
-```
-
 ## License
 
 Author: asqw: Discord - .asqw, GitHub - comasqw
